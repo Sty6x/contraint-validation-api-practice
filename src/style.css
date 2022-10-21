@@ -148,3 +148,6 @@ select:focus:invalid, input:focus:invalid{
 select:focus:valid, input:focus:valid{
   box-shadow: 0 0 2px 3px #A3BE8C ;
 }
+select:valid, input:valid{
+  box-shadow: 0 0 2px 3px #A3BE8C ;
+}

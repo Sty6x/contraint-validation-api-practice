@@ -29,17 +29,17 @@
           </li>
           <li id="zipcode-cont">
             <label for="zipcode">Zipcode:</label>
-            <input type="number" maxlength="5" id="zipcode" name="zipcode"
+            <input type="number" minlength="5" maxlength="5" id="zipcode" name="zipcode"
               oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
               required>
           </li>
           <li id="pass-cont">
             <label for="pass">Password:</label>
-            <input type="new-password" id="pass" name="pass" minlength="8" required>
+            <input type="password" id="pass" name="pass" required>
           </li>
-          <li id=" pass-con-cont">
+          <li id="pass-con-cont">
             <label for="conf-pass">Confirm Password:</label>
-            <input type="new-password" hidden id="conf-pass" name="conf-pass" required>
+            <input type="password" id="conf-pass" name="conf-pass" required>
           </li>
         </ul>
         <div id="btn-cont">

@@ -6,7 +6,7 @@ const countryList = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "
 const zip = document.getElementById('zipcode')
 const pass = document.getElementById('pass')
 const passConf = document.getElementById('conf-pass')
-
+const form = document.querySelector('form')
 
 
 function createOptions(countryList) {
@@ -17,6 +17,8 @@ function createOptions(countryList) {
   }
 }
 
+createOptions(countryList)
+const inputs = [mail, countrySelect, zip, pass]
 
 function showError(element) {
   let isZip = element.type == 'number' ? 'zipcode' : element.type;
@@ -29,11 +31,22 @@ function showError(element) {
     element.reportValidity()
   }
   else if (element.validity.tooShort) {
-    console.log('short')
     element.setCustomValidity(`${isZip} is too short, the minimum character should be 8`)
     element.reportValidity()
   }
+  return element.validity.valid
 }
+
+function confirmPass() {
+  if (passConf.value === pass.value) {
+    passConf.setCustomValidity('')
+  } else {
+    passConf.setCustomValidity('password must match')
+  }
+  return passConf.value === pass.value
+}
+
+
 
 mail.addEventListener('input', () => {
   if (mail.validity.valid) {
@@ -50,8 +63,6 @@ pass.addEventListener('input', () => {
     showError(pass)
   }
 })
-
-
 
 zip.addEventListener('input', () => {
   if (zip.validity.valid) {
@@ -70,4 +81,16 @@ countrySelect.addEventListener('click', () => {
   }
 })
 
-createOptions(countryList)
+form.addEventListener('submit', (e) => {
+  inputs.forEach(input => {
+    if (!input.validity.valid) {
+      e.preventDefault()
+      input.reportValidity()
+    }
+  })
+  if (!confirmPass()) {
+    e.preventDefault()
+    passConf.reportValidity()
+  }
+})
+
