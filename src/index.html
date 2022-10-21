@@ -14,33 +14,33 @@
   </header>
   <main>
     <div id="form-container">
+      <h1 id="logo">Sign-Up Form</h1>
       <form novalidate>
         <ul id="inner-form-container">
           <li id="mail-cont">
             <label for="mail">Email:</label>
-            <input type="email" name="mail" required>
+            <input type="email" id="mail" name="mail" required>
           </li>
           <li id="country-cont">
-
             <label for="country">Country:</label>
-            <input type="text" name="country" required>
+            <input type="text" id="country" name="country" required>
           </li>
           <li id="zipcode-cont">
             <label for="zipcode">Zipcode:</label>
-            <input type="number" name="zipcode" required>
+            <input type="number" id="zipcode" name="zipcode" required>
           </li>
           <li id="pass-cont">
             <label for="pass">Password:</label>
-            <input type="text" name="pass" required>
+            <input type="text" id="pass" name="pass" required>
           </li>
           <li id="pass-con-cont">
             <label for="conf-pass">Confirm Password:</label>
-            <input type="text" name="conf-pass" required>
-          </li>
-          <li id="sub-btn-cont">
-            <button id="sub-btn" type="submit">Submit</button>
+            <input type="text" id="conf-pass" name="conf-pass" required>
           </li>
         </ul>
+        <div id="btn-cont">
+          <button id="sub-btn" type="submit">Submit</button>
+        </div>
       </form>
     </div>
   </main>
