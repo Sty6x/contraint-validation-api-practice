@@ -24,15 +24,12 @@ function showError(element) {
   let isZip = element.type == 'number' ? 'zipcode' : element.type;
   if (element.validity.valueMissing) {
     element.setCustomValidity(`${isZip} is required`)
-    element.reportValidity()
   }
   else if (element.validity.typeMismatch) {
     element.setCustomValidity(`an ${isZip} is expected in this field`)
-    element.reportValidity()
   }
   else if (element.validity.tooShort) {
     element.setCustomValidity(`${isZip} is too short, the minimum character should be 8`)
-    element.reportValidity()
   }
   return element.validity.valid
 }
@@ -53,6 +50,12 @@ mail.addEventListener('input', () => {
     mail.setCustomValidity('')
   } else {
     showError(mail)
+  }
+})
+
+passConf.addEventListener('input', () => {
+  if (confirmPass()) {
+    passConf.setCustomValidity('')
   }
 })
 
