@@ -13,7 +13,36 @@
 
   </header>
   <main>
+    <div id="form-container">
+      <form novalidate>
+        <ul id="inner-form-container">
+          <li id="mail-cont">
+            <label for="mail">Email:</label>
+            <input type="email" name="mail" required>
+          </li>
+          <li id="country-cont">
 
+            <label for="country">Country:</label>
+            <input type="text" name="country" required>
+          </li>
+          <li id="zipcode-cont">
+            <label for="zipcode">Zipcode:</label>
+            <input type="number" name="zipcode" required>
+          </li>
+          <li id="pass-cont">
+            <label for="pass">Password:</label>
+            <input type="text" name="pass" required>
+          </li>
+          <li id="pass-con-cont">
+            <label for="conf-pass">Confirm Password:</label>
+            <input type="text" name="conf-pass" required>
+          </li>
+          <li id="sub-btn-cont">
+            <button id="sub-btn" type="submit">Submit</button>
+          </li>
+        </ul>
+      </form>
+    </div>
   </main>
   <footer>
 
