@@ -23,19 +23,23 @@
           </li>
           <li id="country-cont">
             <label for="country">Country:</label>
-            <input type="text" id="country" name="country" required>
+            <select name="country" id="country" required>
+              <option value="" aria-placeholder=""></option>
+            </select>
           </li>
           <li id="zipcode-cont">
             <label for="zipcode">Zipcode:</label>
-            <input type="number" id="zipcode" name="zipcode" required>
+            <input type="number" maxlength="5" id="zipcode" name="zipcode"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              required>
           </li>
           <li id="pass-cont">
             <label for="pass">Password:</label>
-            <input type="text" id="pass" name="pass" required>
+            <input type="new-password" id="pass" name="pass" minlength="8" required>
           </li>
-          <li id="pass-con-cont">
+          <li id=" pass-con-cont">
             <label for="conf-pass">Confirm Password:</label>
-            <input type="text" id="conf-pass" name="conf-pass" required>
+            <input type="new-password" hidden id="conf-pass" name="conf-pass" required>
           </li>
         </ul>
         <div id="btn-cont">

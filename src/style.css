@@ -56,7 +56,7 @@ main{
   align-items: center;
 }
 
-li > label,li > input{
+li > label,li > input,li>select{
   display: inline-block;
   width: 100%;
 }
@@ -120,15 +120,15 @@ form{
   transform: translateX(10%);
 }
 
-li>input{
+li>input, li>select{
   border-radius: 5px;
   -webkit-appearance: none;
   appearance: none;
   outline:none;
-  border:none;
+  border:none; 
 }
 
-li > input{
+li > input,li>select{
   min-height: 2em;
   padding: 2px 5px;
   color: #2E3440;
@@ -136,6 +136,15 @@ li > input{
   margin-top: 5px;
 }
 
-li > input:hover{
+li > input:hover, li > select:hover{
   box-shadow: 5px 8px 15px rgb(0, 0, 0,.2);
+}
+
+select:focus:invalid, input:focus:invalid{
+  box-shadow: 0 0 2px 3px #BF616A ;
+}
+
+
+select:focus:valid, input:focus:valid{
+  box-shadow: 0 0 2px 3px #A3BE8C ;
 }

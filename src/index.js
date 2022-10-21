@@ -1,94 +1,73 @@
 import './style.css'
 
-// const main = document.querySelector('nav')
-// const rudderContainer = document.createElement('div');
-// const rudderItemList = document.createElement('ul')
-// const leftRudItem = document.createElement('div')
-// const rightRudItem = document.createElement('div')
-// const locLi = document.createElement('li')
-// const msgLi = document.createElement('li')
-// const mainItmLi = document.createElement('li')
-// const userLi = document.createElement('li')
-// const settingsLi = document.createElement('li')
+const mail = document.getElementById('mail')
+const countrySelect = document.getElementById('country')
+const countryList = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua &amp; Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia &amp; Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Cayman Islands", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cruise Ship", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyz Republic", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre &amp; Miquelon", "Samoa", "San Marino", "Satellite", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St Kitts &amp; Nevis", "St Lucia", "St Vincent", "St. Lucia", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad &amp; Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks &amp; Caicos", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
+const zip = document.getElementById('zipcode')
+const pass = document.getElementById('pass')
+const passConf = document.getElementById('conf-pass')
 
 
 
-// export function createNav(container) {
-//   leftRudItem.append(locLi, msgLi)
-//   rightRudItem.append(userLi, settingsLi)
-//   rudderItemList.append(leftRudItem, mainItmLi, rightRudItem)
-//   rudderContainer.appendChild(rudderItemList)
-//   container.appendChild(rudderContainer)
-//   applyIDClassAttr()
-// }
+function createOptions(countryList) {
+  for (let i = 0; i < countryList.length; i++) {
+    let country = document.createElement('option')
+    country.innerHTML = countryList[i]
+    countrySelect.appendChild(country)
+  }
+}
 
 
-// function setIDClass(element, id, cls) {
-//   const attributes = {
-//     id,
-//     class: cls
-//   }
-//   for (let key in attributes) {
-//     element.setAttribute(key, attributes[key])
-//   }
-// }
+function showError(element) {
+  let isZip = element.type == 'number' ? 'zipcode' : element.type;
+  if (element.validity.valueMissing) {
+    element.setCustomValidity(`${isZip} is required`)
+    element.reportValidity()
+  }
+  else if (element.validity.typeMismatch) {
+    element.setCustomValidity(`an ${isZip} is expected in this field`)
+    element.reportValidity()
+  }
+  else if (element.validity.tooShort) {
+    console.log('short')
+    element.setCustomValidity(`${isZip} is too short, the minimum character should be 8`)
+    element.reportValidity()
+  }
+}
 
-// function applyIDClassAttr() {
-//   setIDClass(rudderContainer, 'rudder-container', '')
-//   setIDClass(rudderItemList, 'rudder-item-list', 'rudder-active')
-//   setIDClass(leftRudItem, 'left-rud-item', 'left-rud-active')
-//   setIDClass(rightRudItem, 'right-rud-item', 'right-rud-active')
-//   setIDClass(locLi, 'loc', '')
-//   setIDClass(msgLi, 'msg', '')
-//   setIDClass(mainItmLi, 'main-item', '')
-//   setIDClass(userLi, 'user', '')
-//   setIDClass(settingsLi, 'settings', '')
-// }
+mail.addEventListener('input', () => {
+  if (mail.validity.valid) {
+    mail.setCustomValidity('')
+  } else {
+    showError(mail)
+  }
+})
 
-// // fix this so that we can export this function
-// // module will provide the properties needed since
-// // the this module will create a rudder navigation once the
-// // create nav is invoked
-
-// export function rudderAnimation(target) {
-//   if (target.matches('li')) {
-//     if (!rudderItemList.classList.contains('rudder-inactive')) {
-
-//       rudderItemList.removeAttribute('class', 'rudder-active')
-//       rudderItemList.classList.add('rudder-inactive')
-
-//       rightRudItem.classList.remove('right-rud-active')
-//       leftRudItem.classList.remove('left-rud-active')
-//       rightRudItem.classList.add('right-rud-inactive')
-//       leftRudItem.classList.add('left-rud-inactive')
-
-//     } else if (rudderItemList.classList.contains('rudder-inactive')) {
-
-//       rudderItemList.removeAttribute('class', 'rudder-inactive')
-//       rudderItemList.classList.add('rudder-active')
-
-//       rightRudItem.classList.remove('right-rud-inactive')
-//       leftRudItem.classList.remove('left-rud-inactive')
-//       rightRudItem.classList.add('right-rud-active')
-//       leftRudItem.classList.add('left-rud-active')
-//     }
-//   }
-// }
-
-// rudderContainer.addEventListener('click', (e) => {
-//   const target = e.target;
-//   rudderAnimation(target)
-// })
-
-// createNav(main)
+pass.addEventListener('input', () => {
+  if (pass.validity.valid) {
+    pass.setCustomValidity('')
+  } else {
+    showError(pass)
+  }
+})
 
 
-// import * as RudNav from '@sty6x/rudder-nav'
-// const main = document.querySelector('main')
-// const nav = document.querySelector('nav')
 
-// RudNav.createNav(nav)
-// main.addEventListener('click', e => {
-//   const target = e.target;
-//   RudNav.rudderAnimation(target)
-// })
+zip.addEventListener('input', () => {
+  if (zip.validity.valid) {
+    zip.setCustomValidity('')
+  } else {
+    showError(zip)
+  }
+})
+
+countrySelect.addEventListener('click', () => {
+  if (countrySelect.validity.valid) {
+    countrySelect.setCustomValidity('')
+  } else if (countrySelect.value == '') {
+    countrySelect.setCustomValidity('country is required')
+    countrySelect.reportValidity()
+  }
+})
+
+createOptions(countryList)
